@@ -1,10 +1,9 @@
 ﻿@using ProjectTracker.Repositories.DTO
 
-@model EditProjectDTO
+@model AddProjectDTO
 
-<form action="/TeamLeader/UpdateRecordMainProject?@Model">
-    <label><h3>Edit MainProject</h3></label>
-
+<form action="/ProjectManager/InsertRecordMainProject?@Model">
+    <label><h3>Add New MainProject</h3></label>
 
     <div class="form-group">
         @Html.LabelFor(x => x.Title)
@@ -14,6 +13,7 @@
         <span asp-validation-for="Title" class="text-danger"></span>
 
     </div>
+
 
     <div class="form-group">
         @Html.LabelFor(x => x.Description)
@@ -33,7 +33,6 @@
         <span asp-validation-for="StartDate" class="text-danger"></span>
 
     </div>
-
 
     <div class="form-group">
         @Html.LabelFor(x => x.DueDate)

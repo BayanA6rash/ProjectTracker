@@ -1,0 +1,79 @@
+﻿@using ProjectTracker.Repositories.DTO
+
+@model EditProjectDTO
+
+<form action="/ProjectManager/UpdateRecordMainProject?@Model">
+    <label><h3>Edit MainProject</h3></label>
+
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Title)
+
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+
+        <span asp-validation-for="Title" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Description)
+
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+
+        <span asp-validation-for="Description" class="text-danger"></span>
+
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.StartDate)
+
+        @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "dateInput form-control" })
+
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.DueDate)
+
+        @Html.TextBoxFor(x => x.DueDate, "{0:yyyy-MM-dd}", new { @class = "dateInput form-control" })
+
+        <span asp-validation-for="DueDate" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Developers)
+
+        <select class="js-example-basic-multiple" name="Developers" multiple="multiple">
+            @foreach (var developer in ViewBag.Developers)
+            {
+                <option value="@developer.Id">@developer.FirstName &nbsp @developer.LastName</option>
+            }
+        </select>
+
+        <span asp-validation-for="Developers" class="text-danger"></span>
+
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.TeamLeaderID)
+
+        <select name="TeamLeaderID">
+            @foreach (var teamLeader in ViewBag.TeamLeaders)
+            {
+                <option value="@teamLeader.Id">@teamLeader.FirstName &nbsp @teamLeader.LastName</option>
+            }
+        </select>
+
+        <span asp-validation-for="TeamLeaderID" class="text-danger"></span>
+
+    </div>
+
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

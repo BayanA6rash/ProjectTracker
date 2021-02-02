@@ -173,49 +173,5 @@ namespace ProjectTracker.Controllers
             Stream stream = new MemoryStream(work.WorkFile); // from bytes to stream
             return new FileStreamResult(stream, work.ContentType);
         }
-
-        //public IActionResult EditMainProject(int id)
-        //{
-        //    return View(model: _MainProjectRepo.GetMainProjectByProjectID(id));
-        //}
-
-        //public IActionResult UpdateRecordMainProject(EditProjectDTO editProjectDTO)
-        //{
-        //    var userID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //    if (ModelState.IsValid)
-        //    {
-        //        _MainProjectRepo.UpdateProject(editProjectDTO);
-        //        return View("ShowAllMainProjects", model: _MainProjectRepo.GetAllMainProjectsByTeamLeaderID(userID));
-        //    }
-        //    else
-        //    {
-        //        return View("EditMainProject", model: _MainProjectRepo.GetMainProjectByProjectID(editProjectDTO.MainProjectID));
-        //    }
-        //}
-
-        //public IActionResult AddNewMainProject()
-        //{
-        //    ViewBag.Developers = _DeveloperRepo.GetAllDevelopers().ToList();
-        //    ViewBag.TeamLeaders = _TeamLeaderRepo.GetAllTeamLeaders().ToList();
-        //    return View();
-        //}
-
-        //public IActionResult InsertRecordMainProject(AddProjectDTO addProjectDTO)
-        //{
-        //    ViewBag.Developers = _DeveloperRepo.GetAllDevelopers().ToList();
-        //    ViewBag.TeamLeaders = _TeamLeaderRepo.GetAllTeamLeaders().ToList();
-
-        //    if (ModelState.IsValid)
-        //    {
-        //        addProjectDTO.ProjectManagerID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-        //        MainProjectRepo.AddMainProject(addProjectDTO);
-
-        //        return View("ShowAllMainProjects", model: MainProjectRepo.GetAllProjectsByUserID(addProjectDTO.ProjectManagerID));
-        //    }
-        //    else
-        //    {
-        //        return View("AddNewMainProject");
-        //    }
-        //}
     }
 }

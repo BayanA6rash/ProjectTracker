@@ -30,7 +30,6 @@ namespace ProjectTracker.Repositories
                 Status = ProjectStatus.Pending,
                 ProjectMangerID = addProjectDTO.ProjectManagerID,
                 TeamLeaderID = addProjectDTO.TeamLeaderID,
-                ProjectManager = context.ProjectManagers.Where(p => p.Id == addProjectDTO.ProjectManagerID).SingleOrDefault()
             };
             context.MainProjects.Add(project);
             context.SaveChanges();
@@ -45,6 +44,11 @@ namespace ProjectTracker.Repositories
                 });
                 context.SaveChanges();
             }
+        }
+
+        public List<MainProject> GetAllMainProjectByProjectManagerID(string id)
+        {
+            return context.MainProjects.Where(m => m.ProjectMangerID == id).Include(s => s.Sprints).Include(d => d.MainProjectDevelopers).ThenInclude(m => m.Developer).ToList();
         }
 
         public List<MainProject> GetAllMainProjects()
@@ -62,9 +66,18 @@ namespace ProjectTracker.Repositories
             return context.MainProjects.Include(t => t.TeamLeader).Include(d => d.MainProjectDevelopers).ThenInclude(dev => dev.Developer).Where(m => m.ProjectMangerID == id).ToList();
         }
 
-        public MainProject GetMainProjectByProjectID(int id)
+        public EditProjectDTO GetMainProjectByProjectID(int id)
         {
-            return context.MainProjects.Where(m => m.MainProjectID == id).SingleOrDefault();
+            var oldProject= context.MainProjects.Where(m => m.MainProjectID == id).SingleOrDefault();
+            EditProjectDTO editProjectDTO = new EditProjectDTO()
+            {
+                MainProjectID = id,
+                Title = oldProject.Title,
+                Description = oldProject.Description,
+                StartDate = oldProject.StartDate,
+                DueDate = oldProject.DueDate
+            };
+            return editProjectDTO;
         }
            
 
@@ -77,7 +90,6 @@ namespace ProjectTracker.Repositories
             oldPro.Description = editProjectDTO.Description;
             oldPro.StartDate = editProjectDTO.StartDate;
             oldPro.DueDate = editProjectDTO.DueDate;
-            oldPro.Status = ProjectStatus.Pending;
 
             context.SaveChanges();
 
