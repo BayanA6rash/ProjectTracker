@@ -1,0 +1,49 @@
+﻿@model List<Developer>
+<table class="table text-center">
+    <thead>
+        <h3>All Developers</h3>
+        <a href="/Admin/AddNewDeveloper" alignment ="Right" class="btn btn-info">Add New Developer</a>
+
+        <tr>
+            <th>
+                ID
+            </th>
+
+            <th>
+                Name
+            </th>
+
+            <th>
+                E-mail
+            </th>
+
+            <th>
+                Age
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var developer in Model)
+        {
+            <tr>
+                <td>
+                    @developer.Id
+                </td>
+                <td>
+                    @developer.FirstName &nbsp @developer.LastName
+                </td>
+
+                <td>
+                    @developer.Email
+                </td>
+                <td>
+                    @developer.Age
+                </td>
+                <td>
+                    <a href="/Admin/EditDeveloper?id=@developer.Id" class="btn btn-info">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

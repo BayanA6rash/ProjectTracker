@@ -1,0 +1,51 @@
+﻿@model List<TeamLeader>
+
+<table class="table text-center">
+    <thead>
+        <h3>All TeamLeaders</h3>
+        <a href="/Admin/AddNewTeamLeader" alignment="Right" class="btn btn-info">Add New TeamLeader</a>
+
+        <tr>
+            <th>
+                ID
+            </th>
+
+            <th>
+                Name
+            </th>
+
+            <th>
+                E-mail
+            </th>
+
+            <th>
+                Age
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var teamLeader in Model)
+        {
+            <tr>
+                <td>
+                    @teamLeader.Id
+                </td>
+                <td>
+                    @teamLeader.FirstName &nbsp @teamLeader.LastName
+                </td>
+
+                <td>
+                    @teamLeader.Email
+                </td>
+                <td>
+                    @teamLeader.Age
+                </td>
+                <td>
+                    <a href="/Admin/EditTeamLeader?id=@teamLeader.Id" class="btn btn-info">Edit</a>
+                </td>
+              
+            </tr>
+        }
+    </tbody>
+</table>

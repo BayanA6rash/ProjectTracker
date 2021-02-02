@@ -1,0 +1,66 @@
+﻿@model List<Work>
+
+<table class="table text-center">
+    <thead>
+        <h3>All Works</h3>
+
+        <tr>
+            <th>
+                WorkID
+            </th>
+
+            <th>
+                Title
+            </th>
+
+            <th>
+                Description
+            </th>
+            <th>
+                Status
+            </th>
+            <td>
+                DeveloperName
+            </td>
+
+            <td>
+                File
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var work in (List<Work>)Model)
+        {
+        <tr>
+            <td>
+                @work.WorkID
+            </td>
+            <td>
+                @work.WorkTitle
+            </td>
+
+            <td>
+                @work.WorkDescription
+            </td>
+
+            <td>
+                @work.WorkDescription
+            </td>
+
+            <td>
+                @work.Developer.FirstName
+            </td>
+
+            
+            <td><a href="/Teacher/GetFile?id=@work.WorkID" target="_blank">@work.WorkFileName</a></td>
+
+            
+            <td>
+                <a href="/TeamLeader/EditWork?id=@work.WorkID" class="btn btn-info">Edit Status</a>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+

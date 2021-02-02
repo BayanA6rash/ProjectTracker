@@ -1,0 +1,80 @@
+﻿@model List<MainProject>
+
+<table class="table text-center">
+    <thead>
+        <h3>All Main Projects</h3>
+
+        <tr>
+            <th>
+                Main ProjectID
+            </th>
+
+            <th>
+                Title
+            </th>
+
+            <th>
+                Description
+            </th>
+
+            <th>
+                Start Date
+            </th>
+
+            <th>
+                Due Date
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                TeamLeader
+            </th>
+
+            <th>
+                Developers
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in (List<MainProject>)Model)
+        {
+        <tr>
+            <td>
+                @project.MainProjectID
+            </td>
+            <td>
+                @project.Title
+            </td>
+
+            <td>
+                @project.Description
+            </td>
+            <td>
+                @project.StartDate
+            </td>
+            <td>
+                @project.DueDate
+            </td>
+            <td>
+                @project.Status
+            </td>
+            <td>
+                @project.TeamLeader.FirstName &nbsp @project.TeamLeader.LastName
+            </td>
+            <td>
+                @foreach (var dev in project.MainProjectDevelopers)
+                {
+
+                    <span> @dev.Developer.FirstName &nbsp @dev.Developer.LastName &nbsp</span>
+
+                }
+            </td>
+            <td>
+                <a href="/TeamLeader/ShowAllProjectSprints?id=@project.MainProjectID" class="btn btn-info">Sprints</a>
+            </td>
+            
+        </tr>
+        }
+    </tbody>
+</table>

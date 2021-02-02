@@ -1,0 +1,43 @@
+﻿@using ProjectTracker.Repositories.DTO
+
+@model AddSTaskDTO
+
+<form action="/TeamLeader/InsertRecordSTask?@Model">
+    <label><h3>Add New STask</h3></label>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Title)
+
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+
+        <span asp-validation-for="Title" class="text-danger"></span>
+
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Description)
+
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+
+        <span asp-validation-for="Description" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.DeveloperID)
+
+        <select name="DeveloperID">
+            @foreach (var dev in ViewBag.Developers)
+            {
+                <option value="@dev.Id">@dev.FirstName &nbsp @dev.LastName</option>
+            }
+        </select>
+
+        <span asp-validation-for="DeveloperID" class="text-danger"></span>
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

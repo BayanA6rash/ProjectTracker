@@ -1,0 +1,51 @@
+﻿@model List<ProjectManager>
+
+<table class="table text-center">
+    <thead>
+        <h3>All ProjectManagers</h3>
+        <a href="/Admin/AddNewProjectManager" alignment="Right" class="btn btn-info">Add New Project Manager</a>
+
+        <tr>
+            <th>
+                ID
+            </th>
+
+            <th>
+                Name
+            </th>
+
+            <th>
+                E-mail
+            </th>
+
+            <th>
+                Age
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var projectManager in Model)
+        {
+            <tr>
+                <td>
+                    @projectManager.Id
+                </td>
+                <td>
+                    @projectManager.FirstName &nbsp @projectManager.LastName
+                </td>
+
+                <td>
+                    @projectManager.Email
+                </td>
+                <td>
+                    @projectManager.Age
+                </td>
+                <td>
+                    <a href="/Admin/EditProjectManager?id=@projectManager.Id" class="btn btn-info">Edit</a>
+                </td>
+              
+            </tr>
+        }
+    </tbody>
+</table>
