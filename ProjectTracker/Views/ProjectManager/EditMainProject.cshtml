@@ -5,6 +5,15 @@
 <form action="/ProjectManager/UpdateRecordMainProject?@Model">
     <label><h3>Edit MainProject</h3></label>
 
+    <div class="form-group">
+
+            @Html.LabelFor(x => x.MainProjectID)
+
+            @Html.TextBoxFor(x => x.MainProjectID, new { @class = "form-control", @readonly = "true" ,@Value = "ViewBag.userID"})
+
+            <span asp-validation-for="MainProjectID" class="text-danger"></span>
+
+        </div>
 
     <div class="form-group">
         @Html.LabelFor(x => x.Title)

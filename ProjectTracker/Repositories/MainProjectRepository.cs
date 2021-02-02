@@ -71,7 +71,7 @@ namespace ProjectTracker.Repositories
             var oldProject= context.MainProjects.Where(m => m.MainProjectID == id).SingleOrDefault();
             EditProjectDTO editProjectDTO = new EditProjectDTO()
             {
-                MainProjectID = id,
+                MainProjectID = oldProject.MainProjectID,
                 Title = oldProject.Title,
                 Description = oldProject.Description,
                 StartDate = oldProject.StartDate,
@@ -79,7 +79,6 @@ namespace ProjectTracker.Repositories
             };
             return editProjectDTO;
         }
-           
 
         public void UpdateProject(EditProjectDTO editProjectDTO)
         {
@@ -90,11 +89,14 @@ namespace ProjectTracker.Repositories
             oldPro.Description = editProjectDTO.Description;
             oldPro.StartDate = editProjectDTO.StartDate;
             oldPro.DueDate = editProjectDTO.DueDate;
-
             context.SaveChanges();
 
-            oldPro.MainProjectDevelopers.Clear();
-            context.SaveChanges();
+            var relation =context.MainProjectDevelopers.Where(p => p.MainProjectID == editProjectDTO.MainProjectID).ToList();
+            foreach (var dev in relation)
+            {
+                context.MainProjectDevelopers.Remove(dev);
+            }
+
 
             foreach (var dev in editProjectDTO.Developers)
             {
