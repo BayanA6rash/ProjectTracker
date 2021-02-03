@@ -2,8 +2,27 @@
 
 @model AddSprintDTO
 
-<form action="/Sprint/InsertRecordSprint?@Model">
+<form action="/TeamLeader/InsertRecordSprint?@Model">
     <label><h3>Add New Sprint</h3></label>
+
+    <div style="display: none;" class="form-group">
+        @Html.LabelFor(x => x.MainProjectID)
+
+        @Html.TextBoxFor(x => x.MainProjectID, new { @class = "form-control" })
+
+        <span asp-validation-for="MainProjectID" class="text-danger"></span>
+
+    </div>
+    <div style="display: none;" class="form-group">
+        @Html.LabelFor(x => x.TeamLeaderID)
+
+        @Html.TextBoxFor(x => x.TeamLeaderID, new { @class = "form-control" })
+
+        <span asp-validation-for="TeamLeaderID" class="text-danger"></span>
+
+    </div>
+
+
 
     <div class="form-group">
         @Html.LabelFor(x => x.Title)

@@ -83,7 +83,7 @@ namespace ProjectTracker.Controllers
             {
                 _SprintRepo.AddSprint(addSprintDTO);
 
-                return View("ShowAllSprints", model: _SprintRepo.GetSprintByProjectID(addSprintDTO.MainProjectID));
+                return View("ShowAllProjectSprints", model: _SprintRepo.GetSprintByProjectID(addSprintDTO.MainProjectID));
             }
             else
             {

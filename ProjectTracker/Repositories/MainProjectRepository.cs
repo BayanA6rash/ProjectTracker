@@ -48,7 +48,7 @@ namespace ProjectTracker.Repositories
 
         public List<MainProject> GetAllMainProjectByProjectManagerID(string id)
         {
-            return context.MainProjects.Where(m => m.ProjectMangerID == id).Include(s => s.Sprints).Include(d => d.MainProjectDevelopers).ThenInclude(m => m.Developer).ToList();
+            return context.MainProjects.Where(m => m.ProjectMangerID == id).Include(t =>t.TeamLeader).Include(s => s.Sprints).Include(d => d.MainProjectDevelopers).ThenInclude(m => m.Developer).ToList();
         }
 
         public List<MainProject> GetAllMainProjects()
@@ -58,7 +58,7 @@ namespace ProjectTracker.Repositories
 
         public List<MainProject> GetAllMainProjectsByTeamLeaderID(string id)
         {
-            return context.MainProjects.Where(t => t.TeamLeaderID == id).Include(s => s.Sprints).Include(d => d.MainProjectDevelopers).ThenInclude(m => m.Developer).ToList();
+            return context.MainProjects.Where(t => t.TeamLeaderID == id).Include(t => t.TeamLeader).Include(s => s.Sprints).Include(d => d.MainProjectDevelopers).ThenInclude(m => m.Developer).ToList();
         }
 
         public List<MainProject> GetAllProjectsByUserID(string id)
@@ -69,6 +69,7 @@ namespace ProjectTracker.Repositories
         public EditProjectDTO GetMainProjectByProjectID(int id)
         {
             var oldProject= context.MainProjects.Where(m => m.MainProjectID == id).SingleOrDefault();
+           
             EditProjectDTO editProjectDTO = new EditProjectDTO()
             {
                 MainProjectID = oldProject.MainProjectID,
