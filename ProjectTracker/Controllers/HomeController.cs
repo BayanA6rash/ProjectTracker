@@ -39,7 +39,7 @@ namespace ProjectTracker.Controllers
             }
             else
             {
-                return LocalRedirect("/Identity/Account/Login");
+                return LocalRedirect("/Home/Index/");
             }
         }
 
