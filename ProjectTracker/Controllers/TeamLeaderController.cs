@@ -95,7 +95,8 @@ namespace ProjectTracker.Controllers
         public IActionResult ShowAllSTasks(int id)
         {
             ViewBag.SprintID = id;
-            return View(model: _STaskRepo.GetSTaskBySprintID(id));
+            ViewBag.model = _STaskRepo.GetSTaskBySprintID(id);
+            return View();
         }
 
         public IActionResult EditSTask(int id)
@@ -108,7 +109,7 @@ namespace ProjectTracker.Controllers
             if (ModelState.IsValid)
             {
                 _STaskRepo.UpdateStask(editSTaskDTO);
-                return View("ShowAllSTasks", model: _STaskRepo.GetSTaskBySprintID(editSTaskDTO.SprintID));
+                return View("ShowAllSTasks");
             }
             else
             {
@@ -134,8 +135,7 @@ namespace ProjectTracker.Controllers
             if (ModelState.IsValid)
             {
                 _STaskRepo.AddSTask(addSTaskDTO);
-
-                return View("ShowAllSTasks", model: _STaskRepo.GetSTaskBySprintID(addSTaskDTO.SprintID));
+                return View("ShowAllSTasks");
             }
             else
             {

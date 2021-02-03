@@ -16,7 +16,7 @@ namespace ProjectTracker.Models
 
         //Forign key for the associated developer
         public Developer Developer { set; get; }
-        public string DveloperID { set; get; }
+        public string DeveloperID { set; get; }
 
         //List of works by the developer
         public List<Work> works { set; get; }

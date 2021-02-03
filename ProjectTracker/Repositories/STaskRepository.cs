@@ -25,9 +25,8 @@ namespace ProjectTracker.Repositories
             STaskTitle = addSTaskDTO.Title,
             STaskDescription = addSTaskDTO.Description,
             Status = STaskStatus.Pending,
-            DveloperID =addSTaskDTO.DeveloperID,
+            DeveloperID =addSTaskDTO.DeveloperID,
             SprintID = addSTaskDTO.SprintID
-
             });
             context.SaveChanges();
         }
@@ -39,17 +38,17 @@ namespace ProjectTracker.Repositories
 
         public List<STask> GetAllSTasksByUserIDAndSprintID(string userID,int sprintID)
         {
-            return context.STasks.Where(u => u.DveloperID == userID && u.SprintID == sprintID).ToList();
+            return context.STasks.Where(u => u.DeveloperID == userID && u.SprintID == sprintID).ToList();
         }
 
         public List<STask> GetSTaskBySprintID(int id)
         {
-            return context.STasks.Where(s => s.SprintID == id).Include(d => d.Developer).ToList();
+            return context.STasks.Where(s => s.SprintID == id).Include(p=> p.Sprint).Include(d => d.Developer).ToList();
         }
 
         public EditSTaskDTO GetSTaskBySTaskID(int id)
         {
-            var oldSTask = context.STasks.Where(s => s.STaskID == id).Include(d => d.Developer).SingleOrDefault();
+            var oldSTask = context.STasks.Where(s => s.STaskID == id).Include(p => p.Sprint).Include(d => d.Developer).SingleOrDefault();
             EditSTaskDTO editSTaskDTO = new EditSTaskDTO()
             {
                 STaskID= id,
@@ -67,7 +66,7 @@ namespace ProjectTracker.Repositories
             oldSTask.STaskTitle = editSTaskDTO.Title;
             oldSTask.STaskDescription = editSTaskDTO.Description;
             oldSTask.Status = editSTaskDTO.Status;
-            oldSTask.DveloperID = editSTaskDTO.DeveloperID;
+            oldSTask.DeveloperID = editSTaskDTO.DeveloperID;
             context.SaveChanges();
         }
     }

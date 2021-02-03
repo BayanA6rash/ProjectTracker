@@ -36,7 +36,7 @@
     <div class="form-group">
         @Html.LabelFor(x => x.DeveloperID)
 
-        <select name="Developer">
+        <select name="DeveloperID">
             @foreach (var dev in ViewBag.Developers)
             {
                 <option value="@dev.DeveloperID ">@dev.Developer.FirstName &nbsp @dev.Developer.LastName</option>

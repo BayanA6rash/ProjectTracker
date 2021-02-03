@@ -12,7 +12,7 @@ namespace ProjectTracker.Models
 
 
         //Forign key for the project manager
-        public string ProjectMangerID { get; set; }
+        public string ProjectManagerID { get; set; }
         public ProjectManager ProjectManager { set; get; } 
 
         

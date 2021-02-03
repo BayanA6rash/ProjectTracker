@@ -28,7 +28,7 @@ namespace ProjectTracker.Repositories
                 StartDate = addProjectDTO.StartDate,
                 DueDate = addProjectDTO.DueDate,
                 Status = ProjectStatus.Pending,
-                ProjectMangerID = addProjectDTO.ProjectManagerID,
+                ProjectManagerID = addProjectDTO.ProjectManagerID,
                 TeamLeaderID = addProjectDTO.TeamLeaderID,
             };
             context.MainProjects.Add(project);
@@ -48,7 +48,7 @@ namespace ProjectTracker.Repositories
 
         public List<MainProject> GetAllMainProjectByProjectManagerID(string id)
         {
-            return context.MainProjects.Where(m => m.ProjectMangerID == id).Include(t =>t.TeamLeader).Include(s => s.Sprints).Include(d => d.MainProjectDevelopers).ThenInclude(m => m.Developer).ToList();
+            return context.MainProjects.Where(m => m.ProjectManagerID == id).Include(t =>t.TeamLeader).Include(s => s.Sprints).Include(d => d.MainProjectDevelopers).ThenInclude(m => m.Developer).ToList();
         }
 
         public List<MainProject> GetAllMainProjects()
@@ -63,7 +63,7 @@ namespace ProjectTracker.Repositories
 
         public List<MainProject> GetAllProjectsByUserID(string id)
         {
-            return context.MainProjects.Include(t => t.TeamLeader).Include(d => d.MainProjectDevelopers).ThenInclude(dev => dev.Developer).Where(m => m.ProjectMangerID == id).ToList();
+            return context.MainProjects.Include(t => t.TeamLeader).Include(d => d.MainProjectDevelopers).ThenInclude(dev => dev.Developer).Where(m => m.ProjectManagerID == id).ToList();
         }
 
         public EditProjectDTO GetMainProjectByProjectID(int id)

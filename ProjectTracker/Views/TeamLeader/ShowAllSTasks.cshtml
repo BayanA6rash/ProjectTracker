@@ -1,4 +1,4 @@
-﻿@model List<STask>
+﻿
 
 <table class="table text-center">
     <thead>
@@ -20,13 +20,13 @@
             <th>
                 Status
             </th>
-            <td>
+            <th>
                 DeveloperName
-            </td>
+            </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var task in (List<STask>)Model)
+        @foreach (var task in (List<STask>)ViewBag.model)
         {
         <tr>
             <td>
