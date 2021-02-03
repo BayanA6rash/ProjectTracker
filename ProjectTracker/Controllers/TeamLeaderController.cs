@@ -59,7 +59,7 @@ namespace ProjectTracker.Controllers
             if (ModelState.IsValid)
             {
                 _SprintRepo.UpdateSprint(editSprintDTO);
-                return View("ShowAllSprints", model: _SprintRepo.GetSprintByProjectID(editSprintDTO.MainProjectID));
+                return View("ShowAllProjectSprints", model: _SprintRepo.GetSprintByProjectID(editSprintDTO.MainProjectID));
             }
             else
             {
@@ -82,7 +82,6 @@ namespace ProjectTracker.Controllers
             if (ModelState.IsValid)
             {
                 _SprintRepo.AddSprint(addSprintDTO);
-
                 return View("ShowAllProjectSprints", model: _SprintRepo.GetSprintByProjectID(addSprintDTO.MainProjectID));
             }
             else
@@ -119,9 +118,13 @@ namespace ProjectTracker.Controllers
 
         public IActionResult AddNewSTask(int id)
         {
+            var projectID = _SprintRepo.GetProjectIDBySprintID(id);
+            ViewBag.Developers = _DeveloperRepo.GetDevelopersByProjectID(projectID);
+            var sprintID = id;
+
             AddSTaskDTO addSTaskDTO = new AddSTaskDTO()
             {
-                SprintID = id,
+                SprintID = sprintID
             };
             return View(model: addSTaskDTO);
         }

@@ -5,6 +5,15 @@
 <form action="/TeamLeader/InsertRecordSTask?@Model">
     <label><h3>Add New STask</h3></label>
 
+    <div style="display: none;" class="form-group">
+        @Html.LabelFor(x => x.SprintID)
+
+        @Html.TextBoxFor(x => x.SprintID, new { @class = "form-control" })
+
+        <span asp-validation-for="SprintID" class="text-danger"></span>
+
+    </div>
+
     <div class="form-group">
         @Html.LabelFor(x => x.Title)
 
@@ -27,10 +36,10 @@
     <div class="form-group">
         @Html.LabelFor(x => x.DeveloperID)
 
-        <select name="DeveloperID">
+        <select name="Developer">
             @foreach (var dev in ViewBag.Developers)
             {
-                <option value="@dev.Id">@dev.FirstName &nbsp @dev.LastName</option>
+                <option value="@dev.DeveloperID ">@dev.Developer.FirstName &nbsp @dev.Developer.LastName</option>
             }
         </select>
 

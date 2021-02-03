@@ -49,7 +49,7 @@ namespace ProjectTracker.Repositories
 
         public EditSTaskDTO GetSTaskBySTaskID(int id)
         {
-            var oldSTask = context.STasks.Where(s => s.STaskID == id).SingleOrDefault();
+            var oldSTask = context.STasks.Where(s => s.STaskID == id).Include(d => d.Developer).SingleOrDefault();
             EditSTaskDTO editSTaskDTO = new EditSTaskDTO()
             {
                 STaskID= id,

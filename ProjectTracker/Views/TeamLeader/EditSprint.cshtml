@@ -4,6 +4,22 @@
 
 <form action="/TeamLeader/UpdateRecordSprint?@Model">
     <label><h3>Edit Sprint</h3></label>
+    <div style="display: none;" class="form-group">
+        @Html.LabelFor(x => x.MainProjectID)
+
+        @Html.TextBoxFor(x => x.MainProjectID, new { @class = "form-control" })
+
+        <span asp-validation-for="MainProjectID" class="text-danger"></span>
+
+    </div>
+    <div style="display: none;" class="form-group">
+        @Html.LabelFor(x => x.SprintID)
+
+        @Html.TextBoxFor(x => x.SprintID, new { @class = "form-control" })
+
+        <span asp-validation-for="SprintID" class="text-danger"></span>
+
+    </div>
 
 
     <div class="form-group">
