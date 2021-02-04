@@ -22,7 +22,7 @@ namespace ProjectTracker.Models
 
 
         //List of developers associated to this project
-        public List<MainProjectDeveloper> MainProjectDevelopers { get; set; }
+        public List<MainProjectDeveloper> Projects { get; set; }
         
         
         //List of sprints associated to this projetc

@@ -48,7 +48,7 @@ namespace ProjectTracker.Repositories
 
         public List<MainProject> GetAllMainProjectByProjectManagerID(string id)
         {
-            return context.MainProjects.Where(m => m.ProjectManagerID == id).Include(t =>t.TeamLeader).Include(s => s.Sprints).Include(d => d.MainProjectDevelopers).ThenInclude(m => m.Developer).ToList();
+            return context.MainProjects.Where(m => m.ProjectManagerID == id).Include(t =>t.TeamLeader).Include(s => s.Sprints).Include(d => d.Projects).ThenInclude(m => m.Developer).ToList();
         }
 
         public List<MainProject> GetAllMainProjects()
@@ -58,12 +58,12 @@ namespace ProjectTracker.Repositories
 
         public List<MainProject> GetAllMainProjectsByTeamLeaderID(string id)
         {
-            return context.MainProjects.Where(t => t.TeamLeaderID == id).Include(t => t.TeamLeader).Include(s => s.Sprints).Include(d => d.MainProjectDevelopers).ThenInclude(m => m.Developer).ToList();
+            return context.MainProjects.Where(t => t.TeamLeaderID == id).Include(t => t.TeamLeader).Include(s => s.Sprints).Include(d => d.Projects).ThenInclude(m => m.Developer).ToList();
         }
 
-        public List<MainProject> GetAllProjectsByUserID(string id)
+        public List<MainProjectDeveloper> GetAllProjectsByUserID(string id)
         {
-            return context.MainProjects.Include(t => t.TeamLeader).Include(d => d.MainProjectDevelopers).ThenInclude(dev => dev.Developer).Where(m => m.ProjectManagerID == id).ToList();
+            return context.MainProjectDevelopers.Where(p => p.DeveloperID == id).Include(m => m.MainProject).ThenInclude(t => t.TeamLeader).ToList();
         }
 
         public EditProjectDTO GetMainProjectByProjectID(int id)

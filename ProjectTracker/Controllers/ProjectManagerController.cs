@@ -95,7 +95,8 @@ namespace ProjectTracker.Controllers
 
         public IActionResult ShowAllSTasks(int id)
         {
-            return View(model: _STaskRepo.GetSTaskBySprintID(id));
+            ViewBag.model = _STaskRepo.GetSTaskBySprintID(id);
+            return View();
         }
 
         public IActionResult ShowAllWorks(int id)

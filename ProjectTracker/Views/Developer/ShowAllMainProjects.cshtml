@@ -1,0 +1,71 @@
+﻿@using ProjectTracker.Models;
+
+@model List<MainProjectDeveloper>
+
+<table class="table text-center">
+    <thead>
+        <h3>All Main Projects</h3>
+        <tr>
+            <th>
+                Main ProjectID
+            </th>
+
+            <th>
+                Title
+            </th>
+
+            <th>
+                Description
+            </th>
+
+            <th>
+                Start Date
+            </th>
+
+            <th>
+                Due Date
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                TeamLeader
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var project in (List<MainProjectDeveloper>)Model)
+        {
+            <tr>
+                <td>
+                    @project.MainProjectID
+                </td>
+                <td>
+                    @project.MainProject.Title
+                </td>
+
+                <td>
+                    @project.MainProject.Description
+                </td>
+                <td>
+                    @project.MainProject.StartDate
+                </td>
+                <td>
+                    @project.MainProject.DueDate
+                </td>
+                <td>
+                    @project.MainProject.Status
+                </td>
+                <td>
+                    @project.MainProject.TeamLeader.FirstName &nbsp @project.MainProject.TeamLeader.LastName
+                </td>
+
+                <td>
+                    <a href="/Developer/ShowAllSprints?id=@project.MainProjectID" class="btn btn-info">Sprints</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

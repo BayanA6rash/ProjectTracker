@@ -63,7 +63,7 @@
                 @project.TeamLeader.FirstName &nbsp @project.TeamLeader.LastName
             </td>
             <td>
-                @foreach (var dev in project.MainProjectDevelopers)
+                @foreach (var dev in project.Projects)
                 {
 
                     <span> @dev.Developer.FirstName &nbsp @dev.Developer.LastName &nbsp</span>

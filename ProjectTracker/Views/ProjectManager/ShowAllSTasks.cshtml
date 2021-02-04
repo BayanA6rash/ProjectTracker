@@ -1,0 +1,57 @@
+﻿<table class="table text-center">
+    <thead>
+        <h3>All Sprint Tasks</h3>
+
+        <tr>
+            <th>
+                STaskID
+            </th>
+
+            <th>
+                Title
+            </th>
+
+            <th>
+                Description
+            </th>
+            <th>
+                Status
+            </th>
+            <th>
+                DeveloperName
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in (List<STask>)ViewBag.model)
+        {
+            <tr>
+                <td>
+                    @task.STaskID
+                </td>
+                <td>
+                    @task.STaskTitle
+                </td>
+
+                <td>
+                    @task.STaskDescription
+                </td>
+
+                <td>
+                    @task.Status
+                </td>
+
+                <td>
+                    @task.Developer.FirstName  @*&nbsp @task.Developer.LastName*@
+                </td>
+
+
+             
+                <td>
+                    <a href="/ProjectManager/ShowAllWorks?id=@task.STaskID" class="btn btn-info">Works</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

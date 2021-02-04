@@ -12,7 +12,7 @@ namespace ProjectTracker.Repositories
         public EditProjectDTO GetMainProjectByProjectID(int id);
         public void AddMainProject(AddProjectDTO addProjectDTO);
         public List<MainProject> GetAllMainProjects();
-        public List<MainProject> GetAllProjectsByUserID(string id);
+        public List<MainProjectDeveloper> GetAllProjectsByUserID(string id);
         public void UpdateProject(EditProjectDTO editProjectDTO);
         public List<MainProject> GetAllMainProjectsByTeamLeaderID(string id);
 
