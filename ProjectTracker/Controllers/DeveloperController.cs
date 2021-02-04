@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjectTracker.Repositories;
+using ProjectTracker.Repositories.DTO;
 
 namespace ProjectTracker.Controllers
 {
@@ -56,6 +57,35 @@ namespace ProjectTracker.Controllers
             ViewBag.STaskID = id;
             return View(model: _WorkRepo.GetWorkBySTaskID(id));
         }
+
+        public IActionResult AddNewWork(int id)
+        {
+            var userID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var sprintID = _STaskRepo.GetSprintIDBySTaskID(id);
+            var projectID = _SprintRepo.GetProjectIDBySprintID(sprintID);
+            ViewBag.Developers = _DeveloperRepo.GetDevelopersByProjectID(projectID);
+
+            AddWorkDTO addWorkDTO = new AddWorkDTO()
+            {
+                DeveloperID = userID,
+                STaskID = id
+            };
+            return View(model: addWorkDTO);
+        }
+
+        public IActionResult InsertRecordWork(AddWorkDTO addWorkDTO)
+        {
+            if (ModelState.IsValid)
+            {
+                _WorkRepo.AddWork(addWorkDTO);
+                return View("ShowAllWorks", model: _WorkRepo.GetWorkBySTaskID(addWorkDTO.STaskID));
+            }
+            else
+            {
+                return View("AddNewWork",model: addWorkDTO);
+            }
+        }
+
         public FileStreamResult GetFile(int id)
         {
             var work = _WorkRepo.GetWork(id);

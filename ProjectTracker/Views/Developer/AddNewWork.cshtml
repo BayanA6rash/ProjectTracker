@@ -1,0 +1,54 @@
+﻿@using ProjectTracker.Repositories.DTO
+
+@model AddWorkDTO
+
+<form action="/Developer/InsertRecordWork?@Model">
+    <label><h3>Add New Work</h3></label>
+
+    <div style="display: none;" class="form-group">
+        @Html.LabelFor(x => x.STaskID)
+
+        @Html.TextBoxFor(x => x.STaskID, new { @class = "form-control" })
+
+        <span asp-validation-for="STaskID" class="text-danger"></span>
+
+    </div>
+
+    <div style="display: none;" class="form-group">
+        @Html.LabelFor(x => x.DeveloperID)
+
+        @Html.TextBoxFor(x => x.DeveloperID, new { @class = "form-control" })
+
+        <span asp-validation-for="DeveloperID" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Title)
+
+        @Html.TextBoxFor(x => x.Title, new { @class = "form-control" })
+
+        <span asp-validation-for="Title" class="text-danger"></span>
+
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Description)
+
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+
+        <span asp-validation-for="Description" class="text-danger"></span>
+
+    </div>
+
+    <div class="form-group">
+        <label >Upload CV</label>
+        <input class="form-control" type="file" name="file" />
+        <span asp-validation-for="file" class="text-danger"></span>
+
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
