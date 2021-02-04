@@ -16,9 +16,7 @@
             <th>
                 Status
             </th>
-            <th>
-                DeveloperName
-            </th>
+           
         </tr>
     </thead>
     <tbody>
@@ -40,14 +38,9 @@
                     @task.Status
                 </td>
 
+              
                 <td>
-                    @task.Developer.FirstName  @*&nbsp @task.Developer.LastName*@
-                </td>
-
-
-               
-                <td>
-                    <a href="/TeamLeader/ShowAllWorks?id=@task.STaskID" class="btn btn-info">Works</a>
+                    <a href="/Developer/ShowAllWorks?id=@task.STaskID" class="btn btn-info">Works</a>
                 </td>
             </tr>
         }

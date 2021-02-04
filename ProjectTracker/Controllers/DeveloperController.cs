@@ -24,6 +24,7 @@ namespace ProjectTracker.Controllers
         IWorkRepository _WorkRepo;
         public DeveloperController(IWorkRepository workRepository, ISTaskRepository sTaskRepository, ISprintRepository sprintRepository, ITeamLeaderRepository teamLeaderRepository, IDeveloperRepository developerRepository, IMainProjectRepository mainProjectRepository)
         {
+            _STaskRepo = sTaskRepository;
             _MainProjectRepo = mainProjectRepository;
             _TeamLeaderRepo = teamLeaderRepository;
             _DeveloperRepo = developerRepository;
@@ -44,12 +45,15 @@ namespace ProjectTracker.Controllers
 
         public  IActionResult ShowAllSTasks(int id)
         {
-            ViewBag.model = _STaskRepo.GetSTaskBySprintID(id);
+            var userID = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            ViewBag.model = _STaskRepo.GetAllSTasksByUserIDAndSprintID(userID, id);
             return View();
         }
 
         public IActionResult ShowAllWorks(int id)
         {
+            ViewBag.STaskID = id;
             return View(model: _WorkRepo.GetWorkBySTaskID(id));
         }
         public FileStreamResult GetFile(int id)

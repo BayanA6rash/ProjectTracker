@@ -28,6 +28,7 @@ namespace ProjectTracker.Controllers
             _DeveloperRepo = developerRepository;
             _SprintRepo = sprintRepository;
             _WorkRepo = workRepository;
+            _STaskRepo = sTaskRepository;
         }
 
         public IActionResult Index()

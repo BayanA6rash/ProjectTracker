@@ -37,7 +37,7 @@ namespace ProjectTracker.Controllers
             }
             else if (User.IsInRole("DEVELOPER"))
             {
-                return RedirectToAction("AddNewWork", "Developer");
+                return RedirectToAction("ShowAllMainProjects", "Developer");
             }
             else
             {
