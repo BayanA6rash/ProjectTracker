@@ -5,6 +5,24 @@
 <form action="/TeamLeader/UpdateRecordSTask?@Model">
     <label><h3>Edit STask</h3></label>
 
+    <div style="display: none;" class="form-group">
+        @Html.LabelFor(x => x.SprintID)
+
+        @Html.TextBoxFor(x => x.SprintID, new { @class = "form-control" })
+
+        <span asp-validation-for="SprintID" class="text-danger"></span>
+
+    </div>
+
+    <div style="display: none;" class="form-group">
+        @Html.LabelFor(x => x.STaskID)
+
+        @Html.TextBoxFor(x => x.STaskID, new { @class = "form-control" })
+
+        <span asp-validation-for="STaskID" class="text-danger"></span>
+
+    </div>
+
     <div class="form-group">
         @Html.LabelFor(x => x.Title)
 
@@ -30,13 +48,13 @@
         <select name="DeveloperID">
             @foreach (var dev in ViewBag.Developers)
             {
-                <option value="@dev.Id">@dev.FirstName &nbsp @dev.LastName</option>
+                <option value="@dev.DeveloperID ">@dev.Developer.FirstName &nbsp @dev.Developer.LastName</option>
             }
         </select>
 
         <span asp-validation-for="DeveloperID" class="text-danger"></span>
-
     </div>
+
     <div class="form-group">
         @Html.LabelFor(x => x.Status)
 

@@ -88,7 +88,6 @@ namespace ProjectTracker.Controllers
             {
                 return View("AddNewSprint", addSprintDTO.MainProjectID);
             }
-
         }
 
         //STask privillages
@@ -101,6 +100,10 @@ namespace ProjectTracker.Controllers
 
         public IActionResult EditSTask(int id)
         {
+            var sprintID = _STaskRepo.GetSprintIDBySTaskID(id);
+            var projectID = _SprintRepo.GetProjectIDBySprintID(sprintID);
+            ViewBag.Developers = _DeveloperRepo.GetDevelopersByProjectID(projectID);
+
             return View(model: _STaskRepo.GetSTaskBySTaskID(id));
         }
 

@@ -41,6 +41,11 @@ namespace ProjectTracker.Repositories
             return context.STasks.Where(u => u.DeveloperID == userID && u.SprintID == sprintID).ToList();
         }
 
+        public int GetSprintIDBySTaskID(int id)
+        {
+            return context.STasks.Where(s => s.STaskID == id).Select(p => p.SprintID).SingleOrDefault();
+        }
+
         public List<STask> GetSTaskBySprintID(int id)
         {
             return context.STasks.Where(s => s.SprintID == id).Include(p=> p.Sprint).Include(d => d.Developer).ToList();

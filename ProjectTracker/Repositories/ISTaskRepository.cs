@@ -12,6 +12,7 @@ namespace ProjectTracker.Repositories
         public List<STask> GetSTaskBySprintID(int id);
         public EditSTaskDTO GetSTaskBySTaskID(int id);
 
+        public int GetSprintIDBySTaskID(int id);
         public void AddSTask(AddSTaskDTO addSTaskDTO);
         public List<STask> GetAllSTasks();
         public List<STask> GetAllSTasksByUserIDAndSprintID(string userID,int sprintID);
