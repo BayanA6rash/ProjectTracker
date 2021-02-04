@@ -4,12 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjectTracker.Repositories;
 using ProjectTracker.Repositories.DTO;
 
 namespace ProjectTracker.Controllers
 {
+    [Authorize(Roles = "PROJECTMANAGER")]
+
     public class ProjectManagerController : Controller
     {
         IMainProjectRepository _MainProjectRepo;

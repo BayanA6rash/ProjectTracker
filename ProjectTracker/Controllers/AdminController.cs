@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjectTracker.Repositories;
 using ProjectTracker.Repositories.DTO;
 
 namespace ProjectTracker.Controllers
 {
+    [Authorize(Roles = "ADMIN")]
     public class AdminController : Controller
     {
         IProjectManagerRepository _ProjectManagerRepo;

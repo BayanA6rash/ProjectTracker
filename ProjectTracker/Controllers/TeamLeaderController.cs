@@ -11,6 +11,7 @@ using ProjectTracker.Repositories.DTO;
 
 namespace ProjectTracker.Controllers
 {
+    [Authorize(Roles = "TEAMLEADER")]
     public class TeamLeaderController : Controller
     {
         private IMainProjectRepository _MainProjectRepo;
