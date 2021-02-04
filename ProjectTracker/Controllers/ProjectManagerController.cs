@@ -14,12 +14,16 @@ namespace ProjectTracker.Controllers
         IMainProjectRepository _MainProjectRepo;
         IDeveloperRepository _DeveloperRepo;
         ITeamLeaderRepository _TeamLeaderRepo;
-
-        public ProjectManagerController(ITeamLeaderRepository teamLeaderRepository, IDeveloperRepository developerRepository,IMainProjectRepository mainProjectRepository)
+        ISprintRepository _SprintRepo;
+        ISTaskRepository _STaskRepo;
+        IWorkRepository _WorkRepo;
+        public ProjectManagerController(IWorkRepository workRepository,ISTaskRepository sTaskRepository,ISprintRepository sprintRepository,ITeamLeaderRepository teamLeaderRepository, IDeveloperRepository developerRepository,IMainProjectRepository mainProjectRepository)
         {
             _MainProjectRepo = mainProjectRepository;
             _TeamLeaderRepo = teamLeaderRepository;
             _DeveloperRepo = developerRepository;
+            _SprintRepo = sprintRepository;
+            _WorkRepo = workRepository;
         }
 
         public IActionResult Index()
@@ -78,6 +82,21 @@ namespace ProjectTracker.Controllers
             {
                 return View("AddNewMainProject");
             }
+        }
+
+        public IActionResult ShowAllSprints(int id)
+        {
+            return View(model: _SprintRepo.GetSprintByProjectID(id));
+        }
+
+        public IActionResult ShowAllSTasks(int id)
+        {
+            return View(model: _STaskRepo.GetSTaskBySprintID(id));
+        }
+
+        public IActionResult ShowAllWorks(int id)
+        {
+            return View(model: _WorkRepo.GetWorkBySTaskID(id));
         }
 
     }

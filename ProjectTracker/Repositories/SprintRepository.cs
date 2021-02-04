@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ProjectTracker.Data;
 using ProjectTracker.Models;
 using ProjectTracker.Repositories.DTO;
@@ -44,7 +45,7 @@ namespace ProjectTracker.Repositories
 
         public List<Sprint> GetSprintByProjectID(int id)
         {
-            return context.Sprints.Where(t => t.MainProjectID == id).ToList();
+            return context.Sprints.Where(t => t.MainProjectID == id).Include(t => t.TeamLeader).ToList();
         }
 
         public EditSprintDTO GetSprintBySprintID(int id)

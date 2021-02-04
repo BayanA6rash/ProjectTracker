@@ -109,6 +109,8 @@ namespace ProjectTracker.Controllers
 
         public IActionResult UpdateRecordSTask(EditSTaskDTO editSTaskDTO)
         {
+            ViewBag.SprintID = editSTaskDTO.SprintID;
+            ViewBag.model = _STaskRepo.GetSTaskBySprintID(editSTaskDTO.SprintID);
             if (ModelState.IsValid)
             {
                 _STaskRepo.UpdateStask(editSTaskDTO);
@@ -135,6 +137,8 @@ namespace ProjectTracker.Controllers
 
         public IActionResult InsertRecordSTask(AddSTaskDTO addSTaskDTO)
         {
+            ViewBag.SprintID = addSTaskDTO.SprintID;
+            ViewBag.model = _STaskRepo.GetSTaskBySprintID(ViewBag.SprintID);
             if (ModelState.IsValid)
             {
                 _STaskRepo.AddSTask(addSTaskDTO);
