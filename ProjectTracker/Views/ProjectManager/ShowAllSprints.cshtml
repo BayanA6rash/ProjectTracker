@@ -1,0 +1,62 @@
+﻿@model List<Sprint>
+
+<table class="table text-center">
+    <thead>
+        <h3>All Sprints</h3>
+
+        <tr>
+            <th>
+                SprintID
+            </th>
+
+            <th>
+                Title
+            </th>
+
+            <th>
+                Description
+            </th>
+
+            <th>
+                Start Date
+            </th>
+
+            <th>
+                Due Date
+            </th>
+            <th>
+                Status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sprint in (List<Sprint>)Model)
+        {
+            <tr>
+                <td>
+                    @sprint.SprintID
+                </td>
+                <td>
+                    @sprint.SprintTitle
+                </td>
+
+                <td>
+                    @sprint.SprintDescription
+                </td>
+                <td>
+                    @sprint.StartDate
+                </td>
+                <td>
+                    @sprint.DueDate
+                </td>
+                <td>
+                    @sprint.Status
+                </td>
+               
+                <td>
+                    <a href="/ProjectManager/ShowAllSTasks?id=@sprint.SprintID" class="btn btn-info">Tasks</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

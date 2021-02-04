@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -97,6 +98,12 @@ namespace ProjectTracker.Controllers
         public IActionResult ShowAllWorks(int id)
         {
             return View(model: _WorkRepo.GetWorkBySTaskID(id));
+        }
+        public FileStreamResult GetFile(int id)
+        {
+            var work = _WorkRepo.GetWork(id);
+            Stream stream = new MemoryStream(work.WorkFile); // from bytes to stream
+            return new FileStreamResult(stream, work.ContentType);
         }
 
     }
