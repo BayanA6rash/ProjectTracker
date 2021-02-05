@@ -25,7 +25,7 @@ namespace ProjectTracker.Controllers
         {
             if (User.IsInRole("ADMIN"))
             {
-                return RedirectToAction("AddNewProjectManager",  "Admin");
+                return RedirectToAction("ShowAllProjectManagers",  "Admin");
             }
             else if (User.IsInRole("PROJECTMANAGER"))
             {
